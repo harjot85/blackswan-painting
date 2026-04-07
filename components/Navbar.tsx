@@ -26,9 +26,9 @@ export default function Navbar() {
         <div className="flex items-center justify-between gap-6">
 
           {/* Logo */}
-          <a href="#home" className="flex flex-col leading-none">
+          <a href="#home" className="flex flex-col leading-none ">
             <span className="font-display text-[21px] font-black tracking-[1.5px] text-white">
-              BLACK <span className="text-gold">SWAN</span>
+              BLACK <span className="text-gold italic">SWAN</span>
             </span>
             <span className="text-[8.5px] font-medium tracking-[5px] text-lo uppercase mt-[3px]">
               Painting &amp; Renovations
