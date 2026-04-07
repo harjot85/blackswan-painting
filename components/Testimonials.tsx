@@ -2,7 +2,15 @@
 
 import { useEffect, useRef } from 'react';
 
-const TESTIMONIALS = [
+interface Testimonial {
+  text: string;
+  initials: string;
+  name: string;
+  location: string;
+  delay: number;
+}
+
+const TESTIMONIALS: Testimonial[] = [
   {
     text: "From start to finish, the crew at Black Swan was professional, clean, and incredibly thorough. Our home looks like a new build. Absolutely worth every penny.",
     initials: 'JM', name: 'James & Michelle R.', location: 'Chilliwack, BC', delay: 0,
@@ -17,13 +25,15 @@ const TESTIMONIALS = [
   },
 ];
 
-function TestiCard({ text, initials, name, location, delay }) {
-  const ref = useRef(null);
+function TestiCard({ text, initials, name, location, delay }: Testimonial) {
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
     const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { ref.current.classList.add('visible'); obs.disconnect(); }
+      if (e.isIntersecting) { el.classList.add('visible'); obs.disconnect(); }
     }, { threshold: 0.1 });
-    obs.observe(ref.current);
+    obs.observe(el);
     return () => obs.disconnect();
   }, []);
 

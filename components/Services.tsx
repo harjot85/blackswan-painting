@@ -2,7 +2,18 @@
 
 import { useEffect, useRef } from 'react';
 
-const SERVICES = [
+interface ServiceItem {
+  num: string;
+  title: string;
+  icon: React.ReactNode;
+  desc: string;
+}
+
+interface ServiceCardProps extends ServiceItem {
+  delay: number;
+}
+
+const SERVICES: ServiceItem[] = [
   {
     num: '01', title: 'Interior Painting',
     icon: <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5" width="46" height="46"><path strokeLinecap="round" strokeLinejoin="round" d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline strokeLinecap="round" strokeLinejoin="round" points="9 22 9 12 15 12 15 22"/></svg>,
@@ -35,14 +46,16 @@ const SERVICES = [
   },
 ];
 
-function ServiceCard({ num, title, icon, desc, delay }) {
-  const ref = useRef(null);
+function ServiceCard({ num, title, icon, desc, delay }: ServiceCardProps) {
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
     const observer = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { ref.current.classList.add('visible'); observer.disconnect(); }
+      if (e.isIntersecting) { el.classList.add('visible'); observer.disconnect(); }
     }, { threshold: 0.1 });
-    observer.observe(ref.current);
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
 

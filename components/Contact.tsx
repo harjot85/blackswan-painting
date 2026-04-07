@@ -2,7 +2,21 @@
 
 import { useState } from 'react';
 
-const INFO_ITEMS = [
+interface InfoItem {
+  label: string;
+  value: string;
+  icon: React.ReactNode;
+}
+
+interface FormFieldProps {
+  label: string;
+  name: string;
+  type?: string;
+  placeholder: string;
+  required?: boolean;
+}
+
+const INFO_ITEMS: InfoItem[] = [
   {
     label: 'Location', value: 'Chilliwack, BC',
     icon: <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>,
@@ -21,16 +35,32 @@ const INFO_ITEMS = [
   },
 ];
 
+const SERVICES = [
+  'Interior Painting', 'Exterior Painting', 'Cabinet Refinishing',
+  'Deck & Fence Staining', 'Drywall Repair', 'Home Renovation', 'Other / Not Sure',
+];
+
+function FormField({ label, name, type = 'text', placeholder, required }: FormFieldProps) {
+  return (
+    <div className="mb-[18px]">
+      <label className="block text-[11px] font-semibold tracking-[1.5px] uppercase text-lo mb-2">
+        {label}
+      </label>
+      <input type={type} name={name} className="form-input" placeholder={placeholder} required={required} />
+    </div>
+  );
+}
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [loading,   setLoading]   = useState(false);
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
     try {
-      const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(e.target) });
-      const json = await res.json();
+      const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(e.currentTarget) });
+      const json = await res.json() as { success: boolean };
       if (json.success) setSubmitted(true);
       else alert('Something went wrong. Please try again or call us directly.');
     } catch {
@@ -87,17 +117,17 @@ export default function Contact() {
                 <p className="text-[13.5px] text-mid mb-8">Fill out the form and we&apos;ll get back to you within 24 hours.</p>
 
                 <form onSubmit={handleSubmit}>
-                  <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE"/>
-                  <input type="hidden" name="subject"    value="New Quote Request — Black Swan Painting"/>
-                  <input type="hidden" name="from_name"  value="Black Swan Painting Website"/>
-                  <input type="checkbox" name="botcheck" className="hidden"/>
+                  <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE" />
+                  <input type="hidden" name="subject"    value="New Quote Request — Black Swan Painting" />
+                  <input type="hidden" name="from_name"  value="Black Swan Painting Website" />
+                  <input type="checkbox" name="botcheck" className="hidden" />
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <FormField label="First Name" name="first_name" placeholder="John" required/>
-                    <FormField label="Last Name"  name="last_name"  placeholder="Smith" required/>
+                    <FormField label="First Name" name="first_name" placeholder="John" required />
+                    <FormField label="Last Name"  name="last_name"  placeholder="Smith" required />
                   </div>
-                  <FormField label="Email Address" name="email" type="email" placeholder="john@example.com" required/>
-                  <FormField label="Phone Number"  name="phone" type="tel"   placeholder="(604) 555-0000"/>
+                  <FormField label="Email Address" name="email" type="email" placeholder="john@example.com" required />
+                  <FormField label="Phone Number"  name="phone" type="tel"   placeholder="(604) 555-0000" />
 
                   <div className="mb-[18px]">
                     <label className="block text-[11px] font-semibold tracking-[1.5px] uppercase text-lo mb-2">
@@ -105,9 +135,7 @@ export default function Contact() {
                     </label>
                     <select name="service" className="form-input appearance-none cursor-pointer">
                       <option value="" disabled>Select a service…</option>
-                      {['Interior Painting','Exterior Painting','Cabinet Refinishing','Deck & Fence Staining','Drywall Repair','Home Renovation','Other / Not Sure'].map(s => (
-                        <option key={s}>{s}</option>
-                      ))}
+                      {SERVICES.map(s => <option key={s}>{s}</option>)}
                     </select>
                   </div>
 
@@ -116,7 +144,7 @@ export default function Contact() {
                       Project Details
                     </label>
                     <textarea name="message" className="form-input resize-y min-h-[110px]" rows={4}
-                      placeholder="Tell us about your project — size, timeline, any specific requirements…"/>
+                      placeholder="Tell us about your project — size, timeline, any specific requirements…" />
                   </div>
 
                   <button type="submit" className="btn btn-primary w-full justify-center !py-[15px] !text-[15px]" disabled={loading}>
@@ -129,16 +157,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  );
-}
-
-function FormField({ label, name, type = 'text', placeholder, required }) {
-  return (
-    <div className="mb-[18px]">
-      <label className="block text-[11px] font-semibold tracking-[1.5px] uppercase text-lo mb-2">
-        {label}
-      </label>
-      <input type={type} name={name} className="form-input" placeholder={placeholder} required={required}/>
-    </div>
   );
 }

@@ -2,23 +2,25 @@
 
 import { useEffect, useRef } from 'react';
 
-const CHECKS = [
+const CHECKS: string[] = [
   'Fully licensed & insured', 'Premium materials only',
   'On time, every time',     'Clean job sites, always',
   'Free written estimates',  'Satisfaction guaranteed',
 ];
 
-const CheckIcon = () => (
-  <div className="w-[18px] h-[18px] rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center shrink-0 mt-[2px] text-gold">
-    <svg width="9" height="9" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
-      <polyline points="20 6 9 17 4 12"/>
-    </svg>
-  </div>
-);
+function CheckIcon() {
+  return (
+    <div className="w-[18px] h-[18px] rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center shrink-0 mt-[2px] text-gold">
+      <svg width="9" height="9" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+  );
+}
 
 export default function About() {
-  const leftRef  = useRef(null);
-  const rightRef = useRef(null);
+  const leftRef  = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([e]) => {
@@ -36,7 +38,6 @@ export default function About() {
           {/* Visual side */}
           <div ref={leftRef} className="reveal relative">
             <svg
-              className="about-img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 640 800"
               preserveAspectRatio="xMidYMid slice"

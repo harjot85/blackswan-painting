@@ -2,19 +2,30 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const STATS = [
+interface StatItem {
+  target: number;
+  suffix: string;
+  label: string;
+}
+
+interface CounterProps {
+  target: number;
+  suffix: string;
+}
+
+const STATS: StatItem[] = [
   { target: 500, suffix: '+', label: 'Projects Completed' },
   { target: 10,  suffix: '+', label: 'Years of Experience' },
   { target: 98,  suffix: '%', label: 'Client Satisfaction' },
 ];
 
-function Counter({ target, suffix }) {
+function Counter({ target, suffix }: CounterProps) {
   const [count, setCount] = useState(0);
-  const ref = useRef(null);
+  const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
 
   useEffect(() => {
-    if (!target) return;
+    if (!target || !ref.current) return;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && !started.current) {
         started.current = true;
@@ -46,7 +57,7 @@ export default function Stats() {
         <div className="grid grid-cols-1 sm:grid-cols-3">
           {STATS.map((s, i) => (
             <div key={i} className={`text-center py-2 relative ${i > 0 ? 'border-l border-white/[0.08]' : ''}`}>
-              <Counter {...s} />
+              <Counter target={s.target} suffix={s.suffix} />
               <span className="text-xs text-mid tracking-[0.5px]">{s.label}</span>
             </div>
           ))}

@@ -115,7 +115,17 @@ const GalleryGraphic5 = () => (
   </svg>
 );
 
-const ITEMS = [
+interface GalleryItem {
+  Graphic: React.ComponentType;
+  label: string;
+  span2?: boolean;
+}
+
+interface GItemProps extends GalleryItem {
+  delay: number;
+}
+
+const ITEMS: GalleryItem[] = [
   { Graphic: GalleryGraphic1, label: 'Interior Painting — Chilliwack', span2: true },
   { Graphic: GalleryGraphic2, label: 'Living Room Refresh' },
   { Graphic: GalleryGraphic3, label: 'Cabinet Refinishing' },
@@ -123,13 +133,15 @@ const ITEMS = [
   { Graphic: GalleryGraphic5, label: 'Exterior Repaint' },
 ];
 
-function GItem({ Graphic, label, span2, delay }) {
-  const ref = useRef(null);
+function GItem({ Graphic, label, span2, delay }: GItemProps) {
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
     const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { ref.current.classList.add('visible'); obs.disconnect(); }
+      if (e.isIntersecting) { el.classList.add('visible'); obs.disconnect(); }
     }, { threshold: 0.1 });
-    obs.observe(ref.current);
+    obs.observe(el);
     return () => obs.disconnect();
   }, []);
 

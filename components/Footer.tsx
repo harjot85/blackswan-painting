@@ -1,5 +1,23 @@
-const SERVICES_LINKS = ['Interior Painting','Exterior Painting','Cabinet Refinishing','Deck & Fence Staining','Drywall Repair','Home Renovations'];
-const COMPANY_LINKS  = [['About Us','#about'],['Gallery','#gallery'],['Reviews','#testimonials'],['Contact','#contact'],['Free Quote','#contact']];
+const SERVICES_LINKS = [
+  'Interior Painting', 'Exterior Painting', 'Cabinet Refinishing',
+  'Deck & Fence Staining', 'Drywall Repair', 'Home Renovations',
+];
+
+const COMPANY_LINKS: [string, string][] = [
+  ['About Us', '#about'], ['Gallery', '#gallery'], ['Reviews', '#testimonials'],
+  ['Contact', '#contact'], ['Free Quote', '#contact'],
+];
+
+interface SocialLink {
+  label: string;
+  path: string | null;
+}
+
+const SOCIAL_LINKS: SocialLink[] = [
+  { label: 'Facebook',  path: 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z' },
+  { label: 'Instagram', path: null },
+  { label: 'Location',  path: 'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z' },
+];
 
 export default function Footer() {
   return (
@@ -21,11 +39,7 @@ export default function Footer() {
               Chilliwack&rsquo;s trusted painting and renovation professionals. Quality work, honest pricing, and results that speak for themselves.
             </p>
             <div className="flex gap-[10px]">
-              {[
-                { label: 'Facebook', path: 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z' },
-                { label: 'Instagram', path: null },
-                { label: 'Location',  path: 'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z' },
-              ].map(({ label, path }) => (
+              {SOCIAL_LINKS.map(({ label, path }) => (
                 <a key={label} href="#" aria-label={label}
                   className="w-9 h-9 rounded-[6px] bg-bk-3 border border-white/[0.07] flex items-center justify-center text-lo transition-all duration-300 hover:text-mid hover:border-white/20">
                   {label === 'Instagram' ? (
@@ -34,7 +48,7 @@ export default function Footer() {
                     </svg>
                   ) : (
                     <svg width="15" height="15" fill={label === 'Facebook' ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path d={path}/>{label === 'Location' && <circle cx="12" cy="10" r="3"/>}
+                      <path d={path ?? undefined}/>{label === 'Location' && <circle cx="12" cy="10" r="3"/>}
                     </svg>
                   )}
                 </a>
@@ -68,7 +82,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Black Swan Painting &amp; Renovations. Chilliwack, BC. All rights reserved.
           </p>
           <div className="flex gap-6">
-            {['Privacy Policy','Terms of Service'].map(t => (
+            {['Privacy Policy', 'Terms of Service'].map(t => (
               <a key={t} href="#" className="text-[12.5px] text-lo hover:text-mid transition-colors duration-200">{t}</a>
             ))}
           </div>
