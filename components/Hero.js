@@ -2,80 +2,63 @@
 
 export default function Hero() {
   return (
-    <section id="home" style={{
-      position: 'relative', minHeight: '100vh',
-      display: 'flex', alignItems: 'center',
-      overflow: 'hidden', background: 'var(--black)',
-    }}>
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-bk">
+
       {/* Radial glow */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none',
+      <div className="absolute inset-0 pointer-events-none" style={{
         background: `
           radial-gradient(ellipse 80% 60% at 65% 45%, rgba(242,193,46,0.07) 0%, transparent 70%),
           radial-gradient(ellipse 50% 40% at 20% 80%, rgba(242,193,46,0.04) 0%, transparent 60%)`,
-      }}/>
+      }} />
 
       {/* Dot grid */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none',
+      <div className="absolute inset-0 pointer-events-none" style={{
         backgroundImage: 'radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px)',
         backgroundSize: '40px 40px',
         WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%)',
         maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%)',
-      }}/>
+      }} />
 
       {/* Decorative bg wordmark */}
-      <div aria-hidden style={{
-        position: 'absolute', right: -60, bottom: -40,
-        fontFamily: 'var(--font-display)', fontSize: 'clamp(160px,22vw,300px)',
-        fontWeight: 900, color: 'transparent',
+      <div aria-hidden className="absolute right-[-60px] bottom-[-40px] font-display font-black pointer-events-none select-none hidden md:block" style={{
+        fontSize: 'clamp(160px,22vw,300px)',
+        color: 'transparent',
         WebkitTextStroke: '1px rgba(242,193,46,0.07)',
-        lineHeight: 0.85, pointerEvents: 'none', userSelect: 'none', letterSpacing: -4,
+        lineHeight: 0.85,
+        letterSpacing: -4,
       }}>BS</div>
 
       <div className="container">
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: 760, paddingTop: 80 }}>
+        <div className="relative z-[2] max-w-[760px] pt-20">
 
           {/* Pill badge */}
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: '5px 14px 5px 6px',
-            background: 'var(--yellow-muted)',
-            border: '1px solid rgba(242,193,46,0.22)',
-            borderRadius: 100, fontSize: 11.5, fontWeight: 600,
-            letterSpacing: '1.5px', textTransform: 'uppercase',
-            color: 'var(--yellow)', marginBottom: 30,
-          }}>
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--yellow)' }}/>
+          <div className="inline-flex items-center gap-2 pl-[6px] pr-[14px] py-[5px] bg-gold/10 border border-gold/20 rounded-full text-[11.5px] font-semibold tracking-[1.5px] uppercase text-gold mb-[30px]">
+            <span className="w-[7px] h-[7px] rounded-full bg-gold" />
             Serving Chilliwack, BC
           </div>
 
           {/* Title */}
-          <h1 style={{
-            fontFamily: 'var(--font-display)',
+          <h1 className="font-display font-black mb-7" style={{
             fontSize: 'clamp(3rem, 8.5vw, 7rem)',
-            fontWeight: 900, lineHeight: 0.95, marginBottom: 28,
+            lineHeight: 0.95,
           }}>
-            <span style={{ display: 'block', color: 'var(--white)' }}>We Don&apos;t</span>
-            <span style={{ display: 'block', color: 'var(--yellow)', fontStyle: 'italic' }}>Just Paint.</span>
-            <span style={{
-              display: 'block', color: 'transparent',
+            <span className="block text-white">We Don&apos;t</span>
+            <span className="block text-gold italic">Just Paint.</span>
+            <span className="block" style={{
+              color: 'transparent',
               WebkitTextStroke: '1.5px rgba(255,255,255,0.25)',
             }}>We Transform.</span>
           </h1>
 
-          <p style={{
-            fontSize: 17, fontWeight: 300, color: 'var(--white-3)',
-            maxWidth: 520, marginBottom: 42, lineHeight: 1.75,
-          }}>
+          <p className="text-[17px] font-light text-mid max-w-[520px] mb-[42px] leading-[1.75]">
             Premium painting and renovation services trusted by{' '}
-            <strong style={{ color: 'var(--white-2)', fontWeight: 500 }}>
+            <strong className="text-hi font-medium">
               hundreds of Chilliwack homeowners.
             </strong>{' '}
             Interior, exterior, cabinets — flawless results, every time.
           </p>
 
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+          <div className="flex gap-[14px] flex-wrap">
             <a href="#gallery" className="btn btn-primary">
               <svg width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
@@ -88,16 +71,8 @@ export default function Hero() {
       </div>
 
       {/* Scroll cue */}
-      <div style={{
-        position: 'absolute', bottom: 36, left: '50%', transform: 'translateX(-50%)',
-        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
-        fontSize: 10, letterSpacing: 3, textTransform: 'uppercase', color: 'var(--white-4)', zIndex: 2,
-      }}>
-        <div style={{
-          width: 1, height: 36,
-          background: 'linear-gradient(to bottom, var(--yellow), transparent)',
-          animation: 'scrollPulse 2.2s ease-in-out infinite',
-        }}/>
+      <div className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[10px] tracking-[3px] uppercase text-lo z-[2]">
+        <div className="w-px h-9 bg-gradient-to-b from-gold to-transparent animate-[scrollPulse_2.2s_ease-in-out_infinite]" />
         <span>Scroll</span>
       </div>
 
@@ -107,9 +82,6 @@ export default function Hero() {
           40%  { opacity: 1; transform: scaleY(1); transform-origin: top; }
           60%  { opacity: 1; transform: scaleY(1); transform-origin: bottom; }
           100% { opacity: 0; transform: scaleY(0); transform-origin: bottom; }
-        }
-        @media (max-width: 768px) {
-          #home div[aria-hidden] { display: none; }
         }
       `}</style>
     </section>

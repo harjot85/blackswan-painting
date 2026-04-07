@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 
-// Each graphic is a self-contained SVG component
 const GalleryGraphic1 = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" preserveAspectRatio="xMidYMid slice" style={{ width: '100%', height: '100%', display: 'block' }}>
     <defs>
@@ -135,49 +134,26 @@ function GItem({ Graphic, label, span2, delay }) {
   }, []);
 
   return (
-    <div ref={ref} className="reveal g-item" style={{
-      gridColumn: span2 ? 'span 2' : 'span 1',
-      transitionDelay: `${delay}s`,
-    }}>
-      <div style={{ width: '100%', height: span2 ? 420 : 360, overflow: 'hidden', position: 'relative' }}>
-        <div className="g-graphic"><Graphic/></div>
+    <div
+      ref={ref}
+      className={`reveal g-item ${span2 ? 'col-span-1 md:col-span-2' : 'col-span-1'}`}
+      style={{ transitionDelay: `${delay}s` }}
+    >
+      <div className="relative overflow-hidden" style={{ height: span2 ? 420 : 360 }}>
+        <div className="g-graphic"><Graphic /></div>
         <div className="g-overlay">
           <span className="g-overlay-label">{label}</span>
         </div>
       </div>
-
-      <style>{`
-        .g-item { border-radius: 5px; overflow: hidden; cursor: pointer; }
-        .g-graphic { width: 100%; height: 100%; transition: transform 0.65s cubic-bezier(0.4,0,0.2,1); }
-        .g-overlay {
-          position: absolute; inset: 0;
-          background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
-          opacity: 0; transition: opacity 0.4s ease;
-          display: flex; align-items: flex-end; padding: 22px;
-        }
-        .g-overlay-label {
-          fontFamily: var(--font-display); font-size: 15px; font-weight: 600;
-          color: var(--white); transform: translateY(8px); transition: transform 0.4s ease;
-        }
-        .g-item:hover .g-graphic { transform: scale(1.06); }
-        .g-item:hover .g-overlay { opacity: 1; }
-        .g-item:hover .g-overlay-label { transform: translateY(0); }
-        @media (max-width: 768px) {
-          .g-item { grid-column: span 1 !important; }
-        }
-      `}</style>
     </div>
   );
 }
 
 export default function Gallery() {
   return (
-    <section id="gallery" style={{ padding: '108px 0', background: 'var(--black)' }}>
+    <section id="gallery" className="py-[108px] bg-bk">
       <div className="container">
-        <div style={{
-          display: 'flex', justifyContent: 'space-between',
-          alignItems: 'flex-end', marginBottom: 48, flexWrap: 'wrap', gap: 24,
-        }}>
+        <div className="flex justify-between items-end mb-12 flex-wrap gap-6">
           <div>
             <div className="section-eyebrow">Portfolio</div>
             <h2 className="section-title">Our <em>Work</em></h2>
@@ -185,16 +161,12 @@ export default function Gallery() {
           <a href="#contact" className="btn btn-ghost">Start Your Project &rarr;</a>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14 }} className="gallery-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[14px]">
           {ITEMS.map((item, i) => (
-            <GItem key={i} {...item} delay={i * 0.1}/>
+            <GItem key={i} {...item} delay={i * 0.1} />
           ))}
         </div>
       </div>
-      <style>{`
-        @media (max-width: 1024px) { .gallery-grid { grid-template-columns: repeat(2,1fr) !important; } }
-        @media (max-width: 768px)  { .gallery-grid { grid-template-columns: 1fr !important; } }
-      `}</style>
     </section>
   );
 }

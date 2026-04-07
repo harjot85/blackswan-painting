@@ -1,7 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
 
+@import "tailwindcss";
+
 /* ============================================================
-   CSS CUSTOM PROPERTIES
+   DESIGN TOKENS  (Tailwind v4 @theme)
+============================================================ */
+@theme {
+  /* Backgrounds */
+  --color-bk:   #080808;
+  --color-bk-2: #0F0F0F;
+  --color-bk-3: #181818;
+  --color-bk-4: #222222;
+  --color-bk-5: #2C2C2C;
+
+  /* Accent */
+  --color-gold:       #F2C12E;
+  --color-gold-hover: #E0B020;
+
+  /* Text greys */
+  --color-hi:     #E8E8E8;
+  --color-mid:    #AAAAAA;
+  --color-lo:     #666666;
+
+  /* Fonts */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+
+  /* Transitions */
+  --ease-ui: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   CSS CUSTOM PROPERTIES  (kept for SVGs & complex inline uses)
 ============================================================ */
 :root {
   --black:        #080808;
@@ -24,10 +54,8 @@
 }
 
 /* ============================================================
-   RESET & BASE
+   BASE
 ============================================================ */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -39,7 +67,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img  { display: block; max-width: 100%; }
 a    { text-decoration: none; color: inherit; }
 ul   { list-style: none; }
 button { cursor: pointer; font-family: inherit; }
@@ -49,7 +76,7 @@ button { cursor: pointer; font-family: inherit; }
 ::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 10px; }
 
 /* ============================================================
-   SHARED UTILITIES
+   LAYOUT UTILITIES
 ============================================================ */
 .container {
   max-width: 1180px;
@@ -57,6 +84,9 @@ button { cursor: pointer; font-family: inherit; }
   padding: 0 28px;
 }
 
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+============================================================ */
 .section-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -90,7 +120,9 @@ button { cursor: pointer; font-family: inherit; }
   color: var(--yellow);
 }
 
-/* BUTTONS */
+/* ============================================================
+   BUTTONS
+============================================================ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -130,7 +162,9 @@ button { cursor: pointer; font-family: inherit; }
   background: rgba(255,255,255,0.04);
 }
 
-/* SCROLL REVEAL */
+/* ============================================================
+   SCROLL REVEAL
+============================================================ */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -147,3 +181,98 @@ button { cursor: pointer; font-family: inherit; }
 .reveal-d3 { transition-delay: 0.3s; }
 .reveal-d4 { transition-delay: 0.4s; }
 .reveal-d5 { transition-delay: 0.5s; }
+
+/* ============================================================
+   SERVICE CARDS  (pseudo-element hover bar — can't use Tailwind)
+============================================================ */
+.service-card {
+  background: var(--black-3);
+  border: 1px solid rgba(255,255,255,0.055);
+  border-radius: 6px;
+  padding: 38px 30px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, var(--yellow), #D4A820);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(242,193,46,0.18);
+  box-shadow: 0 28px 60px rgba(0,0,0,0.45);
+}
+
+.service-card:hover::after { transform: scaleX(1); }
+
+/* ============================================================
+   GALLERY ITEMS
+============================================================ */
+.g-item { border-radius: 5px; overflow: hidden; cursor: pointer; }
+
+.g-graphic {
+  width: 100%; height: 100%;
+  transition: transform 0.65s cubic-bezier(0.4,0,0.2,1);
+}
+
+.g-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex; align-items: flex-end; padding: 22px;
+}
+
+.g-overlay-label {
+  font-family: var(--font-display); font-size: 15px; font-weight: 600;
+  color: var(--white); transform: translateY(8px); transition: transform 0.4s ease;
+}
+
+.g-item:hover .g-graphic { transform: scale(1.06); }
+.g-item:hover .g-overlay { opacity: 1; }
+.g-item:hover .g-overlay-label { transform: translateY(0); }
+
+/* ============================================================
+   TESTIMONIAL CARDS
+============================================================ */
+.testi-card {
+  background: var(--black-3);
+  border: 1px solid rgba(255,255,255,0.055);
+  border-radius: 6px;
+  padding: 36px 32px;
+}
+
+/* ============================================================
+   FORM INPUTS
+============================================================ */
+.form-input {
+  background: var(--black-4);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 5px;
+  padding: 11px 15px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  display: block;
+  width: 100%;
+}
+
+.form-input::placeholder { color: rgba(255,255,255,0.2); }
+
+.form-input:focus {
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 3px rgba(242,193,46,0.1);
+}
+
+.form-input option { background: var(--black-3); }

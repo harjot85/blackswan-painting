@@ -41,38 +41,28 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" style={{
-      padding: '108px 0', background: 'var(--black)', position: 'relative', overflow: 'hidden',
-    }}>
+    <section id="contact" className="py-[108px] bg-bk relative overflow-hidden">
       {/* Top accent line */}
-      <div style={{
-        position: 'absolute', top: 0, left: '10%', right: '10%', height: 1,
-        background: 'linear-gradient(90deg, transparent, rgba(242,193,46,0.4), transparent)',
-      }}/>
+      <div className="absolute top-0 left-[10%] right-[10%] h-px"
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(242,193,46,0.4), transparent)' }} />
 
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 88, alignItems: 'start' }}
-             className="contact-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[52px] md:gap-[88px] items-start">
 
           {/* Info panel */}
           <div>
             <div className="section-eyebrow">Let&rsquo;s Talk</div>
             <h2 className="section-title">Ready to<br/><em>Transform</em><br/>Your Home?</h2>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 26, marginTop: 42 }}>
+            <div className="flex flex-col gap-[26px] mt-[42px]">
               {INFO_ITEMS.map(({ label, value, icon }, i) => (
-                <div key={i} style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                  <div style={{
-                    width: 44, height: 44,
-                    background: 'var(--yellow-muted)',
-                    border: '1px solid rgba(242,193,46,0.2)',
-                    borderRadius: 8, display: 'flex',
-                    alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0, color: 'var(--yellow)',
-                  }}>{icon}</div>
+                <div key={i} className="flex gap-4 items-start">
+                  <div className="w-11 h-11 bg-gold/10 border border-gold/20 rounded-lg flex items-center justify-center shrink-0 text-gold">
+                    {icon}
+                  </div>
                   <div>
-                    <div style={{ fontSize: 10.5, fontWeight: 600, letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--white-4)', marginBottom: 4 }}>{label}</div>
-                    <div style={{ fontSize: 15, fontWeight: 500, color: 'var(--white-2)', whiteSpace: 'pre-line' }}>{value}</div>
+                    <div className="text-[10.5px] font-semibold tracking-[2.5px] uppercase text-lo mb-1">{label}</div>
+                    <div className="text-[15px] font-medium text-hi whitespace-pre-line">{value}</div>
                   </div>
                 </div>
               ))}
@@ -80,47 +70,40 @@ export default function Contact() {
           </div>
 
           {/* Form */}
-          <div style={{
-            background: 'var(--black-3)',
-            border: '1px solid rgba(255,255,255,0.06)',
-            borderRadius: 10, padding: 42,
-          }}>
+          <div className="bg-bk-3 border border-white/[0.06] rounded-[10px] p-[42px] max-sm:p-7">
             {submitted ? (
-              <div style={{ textAlign: 'center', padding: '48px 24px' }}>
-                <div style={{
-                  width: 64, height: 64, background: 'var(--yellow-muted)', borderRadius: '50%',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  margin: '0 auto 20px', color: 'var(--yellow)',
-                }}>
-                  <svg width="30" height="30" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              <div className="text-center py-12 px-6">
+                <div className="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-5 text-gold">
+                  <svg width="30" height="30" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 700, marginBottom: 10 }}>Request Sent!</h3>
-                <p style={{ fontSize: 14, color: 'var(--white-3)' }}>Thanks! We&apos;ll get back to you within 24 hours.</p>
+                <h3 className="font-display text-[24px] font-bold mb-[10px]">Request Sent!</h3>
+                <p className="text-[14px] text-mid">Thanks! We&apos;ll get back to you within 24 hours.</p>
               </div>
             ) : (
               <>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 700, marginBottom: 6 }}>Get a Free Quote</h3>
-                <p style={{ fontSize: 13.5, color: 'var(--white-3)', marginBottom: 32 }}>Fill out the form and we&apos;ll get back to you within 24 hours.</p>
+                <h3 className="font-display text-[24px] font-bold mb-1.5">Get a Free Quote</h3>
+                <p className="text-[13.5px] text-mid mb-8">Fill out the form and we&apos;ll get back to you within 24 hours.</p>
 
                 <form onSubmit={handleSubmit}>
-                  {/* Replace with your W3Forms key */}
                   <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE"/>
                   <input type="hidden" name="subject"    value="New Quote Request — Black Swan Painting"/>
                   <input type="hidden" name="from_name"  value="Black Swan Painting Website"/>
-                  <input type="checkbox" name="botcheck" style={{ display: 'none' }}/>
+                  <input type="checkbox" name="botcheck" className="hidden"/>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }} className="form-row">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField label="First Name" name="first_name" placeholder="John" required/>
                     <FormField label="Last Name"  name="last_name"  placeholder="Smith" required/>
                   </div>
                   <FormField label="Email Address" name="email" type="email" placeholder="john@example.com" required/>
                   <FormField label="Phone Number"  name="phone" type="tel"   placeholder="(604) 555-0000"/>
 
-                  <div style={{ marginBottom: 18 }}>
-                    <label style={{ display: 'block', fontSize: 11, fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--white-4)', marginBottom: 8 }}>
+                  <div className="mb-[18px]">
+                    <label className="block text-[11px] font-semibold tracking-[1.5px] uppercase text-lo mb-2">
                       Service Needed
                     </label>
-                    <select name="service" className="form-input" style={{ width: '100%', appearance: 'none', cursor: 'pointer' }}>
+                    <select name="service" className="form-input appearance-none cursor-pointer">
                       <option value="" disabled>Select a service…</option>
                       {['Interior Painting','Exterior Painting','Cabinet Refinishing','Deck & Fence Staining','Drywall Repair','Home Renovation','Other / Not Sure'].map(s => (
                         <option key={s}>{s}</option>
@@ -128,17 +111,15 @@ export default function Contact() {
                     </select>
                   </div>
 
-                  <div style={{ marginBottom: 18 }}>
-                    <label style={{ display: 'block', fontSize: 11, fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--white-4)', marginBottom: 8 }}>
+                  <div className="mb-[18px]">
+                    <label className="block text-[11px] font-semibold tracking-[1.5px] uppercase text-lo mb-2">
                       Project Details
                     </label>
-                    <textarea name="message" className="form-input" rows={4}
-                      style={{ resize: 'vertical', minHeight: 110 }}
+                    <textarea name="message" className="form-input resize-y min-h-[110px]" rows={4}
                       placeholder="Tell us about your project — size, timeline, any specific requirements…"/>
                   </div>
 
-                  <button type="submit" className="btn btn-primary" disabled={loading}
-                    style={{ width: '100%', justifyContent: 'center', padding: 15, fontSize: 15 }}>
+                  <button type="submit" className="btn btn-primary w-full justify-center !py-[15px] !text-[15px]" disabled={loading}>
                     {loading ? 'Sending…' : 'Send My Request →'}
                   </button>
                 </form>
@@ -147,43 +128,14 @@ export default function Contact() {
           </div>
         </div>
       </div>
-
-      <style>{`
-        .form-input {
-          background: var(--black-4);
-          border: 1px solid rgba(255,255,255,0.07);
-          border-radius: 5px;
-          padding: 11px 15px;
-          color: var(--white);
-          font-family: var(--font-body);
-          font-size: 14px;
-          outline: none;
-          transition: border-color 0.25s, box-shadow 0.25s;
-          display: block;
-          width: 100%;
-        }
-        .form-input::placeholder { color: rgba(255,255,255,0.2); }
-        .form-input:focus {
-          border-color: var(--yellow);
-          box-shadow: 0 0 0 3px rgba(242,193,46,0.1);
-        }
-        .form-input option { background: var(--black-3); }
-        @media (max-width: 768px) {
-          .contact-grid { grid-template-columns: 1fr !important; gap: 52px !important; }
-          .form-row { grid-template-columns: 1fr !important; }
-        }
-        @media (max-width: 480px) {
-          .contact-grid > div:last-child { padding: 28px 22px !important; }
-        }
-      `}</style>
     </section>
   );
 }
 
 function FormField({ label, name, type = 'text', placeholder, required }) {
   return (
-    <div style={{ marginBottom: 18 }}>
-      <label style={{ display: 'block', fontSize: 11, fontWeight: 600, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--white-4)', marginBottom: 8 }}>
+    <div className="mb-[18px]">
+      <label className="block text-[11px] font-semibold tracking-[1.5px] uppercase text-lo mb-2">
         {label}
       </label>
       <input type={type} name={name} className="form-input" placeholder={placeholder} required={required}/>

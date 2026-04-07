@@ -11,7 +11,7 @@ const SERVICES = [
   {
     num: '02', title: 'Exterior Painting',
     icon: <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5" width="46" height="46"><rect strokeLinecap="round" strokeLinejoin="round" x="3" y="3" width="18" height="18" rx="2"/><path strokeLinecap="round" d="M3 9h18M9 21V9"/></svg>,
-    desc: 'Boost curb appeal and shield your home from the elements. We use premium exterior coatings engineered for Chilliwack\'s climate — built to last.',
+    desc: "Boost curb appeal and shield your home from the elements. We use premium exterior coatings engineered for Chilliwack's climate — built to last.",
   },
   {
     num: '03', title: 'Cabinet Refinishing',
@@ -48,73 +48,32 @@ function ServiceCard({ num, title, icon, desc, delay }) {
 
   return (
     <div ref={ref} className="reveal service-card" style={{ transitionDelay: `${delay}s` }}>
-      <span style={{
-        position: 'absolute', top: 22, right: 24,
-        fontFamily: 'var(--font-display)', fontSize: 52, fontWeight: 700,
-        color: 'rgba(255,255,255,0.03)', lineHeight: 1,
-      }}>{num}</span>
-      <div style={{ color: 'var(--yellow)', marginBottom: 22 }}>{icon}</div>
-      <h3 style={{
-        fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 700,
-        color: 'var(--white)', marginBottom: 12,
-      }}>{title}</h3>
-      <p style={{ fontSize: 13.5, color: 'var(--white-3)', lineHeight: 1.75, fontWeight: 300 }}>{desc}</p>
-
-      <style>{`
-        .service-card {
-          background: var(--black-3);
-          border: 1px solid rgba(255,255,255,0.055);
-          border-radius: 6px;
-          padding: 38px 30px;
-          position: relative;
-          overflow: hidden;
-          transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-        }
-        .service-card::after {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 2.5px;
-          background: linear-gradient(90deg, var(--yellow), #D4A820);
-          transform: scaleX(0);
-          transform-origin: left;
-          transition: transform 0.4s ease;
-        }
-        .service-card:hover {
-          transform: translateY(-7px);
-          border-color: rgba(242,193,46,0.18);
-          box-shadow: 0 28px 60px rgba(0,0,0,0.45);
-        }
-        .service-card:hover::after { transform: scaleX(1); }
-      `}</style>
+      <span className="absolute top-[22px] right-6 font-display text-[52px] font-bold leading-none select-none"
+        style={{ color: 'rgba(255,255,255,0.03)' }}>
+        {num}
+      </span>
+      <div className="text-gold mb-[22px]">{icon}</div>
+      <h3 className="font-display text-[20px] font-bold text-white mb-3">{title}</h3>
+      <p className="text-[13.5px] text-mid leading-[1.75] font-light">{desc}</p>
     </div>
   );
 }
 
 export default function Services() {
   return (
-    <section id="services" style={{ padding: '108px 0', background: 'var(--black)' }}>
+    <section id="services" className="py-[108px] bg-bk">
       <div className="container">
-        <div style={{ maxWidth: 560, marginBottom: 64 }}>
+        <div className="max-w-[560px] mb-16">
           <div className="section-eyebrow">What We Do</div>
           <h2 className="section-title">Every Surface.<br/><em>Perfected.</em></h2>
         </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3,1fr)',
-          gap: 22,
-        }} className="services-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[22px]">
           {SERVICES.map((s, i) => (
-            <ServiceCard key={i} {...s} delay={(i % 3) * 0.1}/>
+            <ServiceCard key={i} {...s} delay={(i % 3) * 0.1} />
           ))}
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 1024px) { .services-grid { grid-template-columns: repeat(2,1fr) !important; } }
-        @media (max-width: 768px)  { .services-grid { grid-template-columns: 1fr !important; } }
-      `}</style>
     </section>
   );
 }

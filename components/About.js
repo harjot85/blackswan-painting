@@ -9,13 +9,7 @@ const CHECKS = [
 ];
 
 const CheckIcon = () => (
-  <div style={{
-    width: 18, height: 18, borderRadius: '50%',
-    background: 'var(--yellow-muted)',
-    border: '1px solid rgba(242,193,46,0.3)',
-    display: 'flex', alignItems: 'center', justifyContent: 'center',
-    flexShrink: 0, marginTop: 2, color: 'var(--yellow)',
-  }}>
+  <div className="w-[18px] h-[18px] rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center shrink-0 mt-[2px] text-gold">
     <svg width="9" height="9" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
       <polyline points="20 6 9 17 4 12"/>
     </svg>
@@ -35,16 +29,12 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" style={{ padding: '108px 0', background: 'var(--black-2)' }}>
+    <section id="about" className="py-[108px] bg-bk-2">
       <div className="container">
-        <div style={{
-          display: 'grid', gridTemplateColumns: '1fr 1fr',
-          gap: 88, alignItems: 'center',
-        }} className="about-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-[52px] md:gap-[88px] items-center">
 
           {/* Visual side */}
-          <div ref={leftRef} className="reveal" style={{ position: 'relative' }}>
-            {/* About placeholder SVG */}
+          <div ref={leftRef} className="reveal relative">
             <svg
               className="about-img"
               xmlns="http://www.w3.org/2000/svg"
@@ -78,22 +68,13 @@ export default function About() {
             </svg>
 
             {/* Yellow accent border */}
-            <div style={{
-              position: 'absolute', bottom: -18, right: -18,
-              width: '58%', aspectRatio: 1,
-              border: '2.5px solid var(--yellow)',
-              borderRadius: 6, opacity: 0.5, zIndex: 0,
-            }}/>
+            <div className="absolute bottom-[-18px] right-[-18px] w-[58%] aspect-square border-[2.5px] border-gold rounded-[6px] opacity-50 z-0" />
 
             {/* Badge */}
-            <div style={{
-              position: 'absolute', bottom: 32, left: -24,
-              background: 'var(--yellow)', color: 'var(--black)',
-              padding: '18px 22px', borderRadius: 6,
-              boxShadow: 'var(--shadow-lg)', zIndex: 2,
-            }}>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: 38, fontWeight: 900, lineHeight: 1 }}>10+</div>
-              <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.5px', lineHeight: 1.35, marginTop: 3 }}>
+            <div className="absolute bottom-8 left-[-24px] bg-gold text-bk p-[18px_22px] rounded-[6px] z-[2]"
+              style={{ boxShadow: 'var(--shadow-lg)' }}>
+              <div className="font-display text-[38px] font-black leading-none">10+</div>
+              <div className="text-[11px] font-semibold tracking-[0.5px] leading-[1.35] mt-[3px]">
                 Years Serving<br/>Chilliwack
               </div>
             </div>
@@ -104,21 +85,18 @@ export default function About() {
             <div className="section-eyebrow">Our Story</div>
             <h2 className="section-title">Built on Craft,<br/><em>Driven by Pride.</em></h2>
             <br/>
-            <p style={{ fontSize: 15, color: 'var(--white-3)', lineHeight: 1.85, marginBottom: 18 }}>
+            <p className="text-[15px] text-mid leading-[1.85] mb-[18px]">
               Black Swan Painting was founded on one belief: homeowners deserve a contractor who treats their home like their own. We&apos;re not just here to roll paint — we&apos;re here to deliver results that last.
             </p>
-            <p style={{ fontSize: 15, color: 'var(--white-3)', lineHeight: 1.85, marginBottom: 18 }}>
+            <p className="text-[15px] text-mid leading-[1.85] mb-[18px]">
               Based in Chilliwack, we bring the same level of care to every project — whether it&apos;s freshening up a single bedroom or a complete exterior repaint. Fully insured, on time, and we leave every job site spotless.
             </p>
 
-            <div style={{
-              display: 'grid', gridTemplateColumns: '1fr 1fr',
-              gap: '14px 20px', margin: '32px 0 40px',
-            }}>
+            <div className="grid grid-cols-2 gap-x-5 gap-y-[14px] my-8 mb-10">
               {CHECKS.map((text, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                <div key={i} className="flex items-start gap-[10px]">
                   <CheckIcon/>
-                  <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--white-2)', lineHeight: 1.4 }}>{text}</span>
+                  <span className="text-[13px] font-medium text-hi leading-[1.4]">{text}</span>
                 </div>
               ))}
             </div>
@@ -127,12 +105,6 @@ export default function About() {
           </div>
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .about-grid { grid-template-columns: 1fr !important; gap: 52px !important; }
-        }
-      `}</style>
     </section>
   );
 }
