@@ -43,11 +43,14 @@ export default function Hero() {
             lineHeight: 0.95,
           }}>
             <span className="block text-white">We Don&apos;t</span>
-            <span className="block text-gold italic">Just Paint.</span>
-            <span className="block" style={{
+            <span className="block text-gold italic pl-10">Just Paint.</span>
+            <span className="block mt-12 md:mt-8" style={{
               color: 'transparent',
-              WebkitTextStroke: '1.5px rgba(255,255,255,0.25)',
-            }}>We Transform.</span>
+              WebkitTextStroke: '2px #F2C12E',
+              filter: 'drop-shadow(0 0 18px rgba(242,193,46,0.3))',
+              letterSpacing: '-0.02em',
+              opacity: 0.85,
+            }}>We Transform!</span>
           </h1>
 
           <p className="text-[17px] font-light text-mid max-w-[520px] mb-[42px] leading-[1.75]">
