@@ -44,6 +44,16 @@ const SERVICES: ServiceItem[] = [
     icon: <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5" width="46" height="46"><path strokeLinecap="round" strokeLinejoin="round" d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>,
     desc: 'Beyond painting — we handle a full range of interior and exterior renovation work. One reliable contractor, end-to-end results you can count on.',
   },
+  {
+    num: '07', title: 'Exterior House Washing',
+    icon: <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5" width="46" height="46"><path strokeLinecap="round" strokeLinejoin="round" d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path strokeLinecap="round" strokeLinejoin="round" d="M8 21v-6h8v6"/><path strokeLinecap="round" strokeLinejoin="round" d="M6 14c1-1 2-1.5 3-1s2 1 3 0 2-1 3 0"/></svg>,
+    desc: "Revive your home's exterior with a thorough soft wash or pressure wash. We safely remove dirt, mildew, and grime — the perfect prep before a fresh coat of paint.",
+  },
+  {
+    num: '08', title: 'Window Cleaning',
+    icon: <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5" width="46" height="46"><rect strokeLinecap="round" strokeLinejoin="round" x="3" y="3" width="18" height="18" rx="2"/><path strokeLinecap="round" strokeLinejoin="round" d="M3 12h18M12 3v18"/><path strokeLinecap="round" strokeLinejoin="round" d="M7 7.5c1 .5 2 .5 3 0"/></svg>,
+    desc: 'Crystal-clear windows inside and out. Our streak-free window cleaning brightens every room and gives your home a polished, well-maintained look.',
+  },
 ];
 
 function ServiceCard({ num, title, icon, desc, delay }: ServiceCardProps) {

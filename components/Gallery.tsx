@@ -16,14 +16,16 @@ interface GItemProps extends GalleryItem {
 
 const ITEMS: GalleryItem[] = [
   {
-    src: '/gallery/office-doors.jpg',
-    label: 'Interior Painting — Chilliwack',
+    src: '/gallery/l-1.jpg',
+    label: 'Living Room Refresh',
     span2: true,
   },
-  { src: '/gallery/cabinets.jpg', label: 'Cabinet Refinishing' },
-  { src: '/gallery/l-room.jpg', label: 'Living Room Refresh' },
+  { src: '/gallery/nook.jpg', label: 'Cabinet Refinishing' },
+  { src: '/gallery/l-3.jpg', label: 'Living Room Refresh' },
   { src: '/gallery/stairs.jpg', label: 'Full Interior — Sardis' },
-  { src: '/gallery/lobby.jpg', label: 'Exterior Repaint' },
+  { src: '/gallery/l-2.jpg', label: 'Living Room Transformation' },
+  { src: '/gallery/l-4.jpg', label: 'Living Room Refresh' },
+  { src: '/gallery/l-5.jpg', label: 'Living Room Corner' },
 ];
 
 function GItem({ src, Graphic, label, span2, delay }: GItemProps) {
