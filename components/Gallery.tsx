@@ -26,6 +26,13 @@ const ITEMS: GalleryItem[] = [
   { src: '/gallery/l-2.jpg', label: 'Living Room Transformation' },
   { src: '/gallery/l-4.jpg', label: 'Living Room Refresh' },
   { src: '/gallery/l-5.jpg', label: 'Living Room Corner' },
+  { src: '/gallery/Kitchen-I.jpg', label: 'Kitchen Cabinets Renovation' },
+  { src: '/gallery/Island-I.jpg', label: 'Kitchen Island' },
+  { src: '/gallery/Outdoor-I.jpg', label: 'Outdoor Living' },
+  { src: '/gallery/Outdoor-II.jpg', label: 'Outdoor Work' },
+  { src: '/gallery/Kitchen-I.jpg', label: 'Kitchen Cabinets Renovation' },
+  { src: '/gallery/Kitchen-II.jpg', label: 'Kitchen Cabinets Update' },
+  { src: '/gallery/Kitchen-III.jpg', label: 'Kitchen Transformation' },
 ];
 
 function GItem({ src, Graphic, label, span2, delay }: GItemProps) {
