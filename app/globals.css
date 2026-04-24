@@ -241,6 +241,9 @@ button { cursor: pointer; font-family: inherit; }
 .g-item:hover .g-overlay { opacity: 1; }
 .g-item:hover .g-overlay-label { transform: translateY(0); }
 
+.hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
 /* ============================================================
    TESTIMONIAL CARDS
 ============================================================ */
