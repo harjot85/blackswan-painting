@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { INSTAGRAM_URL, INSTAGRAM_HANDLE } from '@/lib/social';
 
 interface GalleryItem {
   src?: string;
@@ -227,6 +228,23 @@ export default function Gallery() {
               onOpen={() => setOpenIndex(i)}
             />
           ))}
+        </div>
+
+        <div className='mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 text-center'>
+          <span className='text-[14px] text-mid'>See more of our latest projects on Instagram</span>
+          <a
+            href={INSTAGRAM_URL}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='inline-flex items-center gap-2 text-[14px] font-medium text-gold hover:text-white transition-colors duration-200'
+          >
+            <svg width='17' height='17' fill='none' stroke='currentColor' strokeWidth='2' viewBox='0 0 24 24' aria-hidden='true'>
+              <rect x='2' y='2' width='20' height='20' rx='5' />
+              <path d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z' />
+              <line x1='17.5' y1='6.5' x2='17.51' y2='6.5' />
+            </svg>
+            {INSTAGRAM_HANDLE}
+          </a>
         </div>
       </div>
 

@@ -1,5 +1,7 @@
 'use client';
 
+import { INSTAGRAM_URL, INSTAGRAM_HANDLE } from '@/lib/social';
+
 export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-bk">
@@ -71,14 +73,29 @@ export default function Hero() {
             <a href="#contact" className="btn btn-ghost">Get a Free Quote &rarr;</a>
           </div>
 
-          <a href="tel:6049977234" className="inline-flex items-center gap-2.5 mt-8 text-[16px] text-mid hover:text-hi transition-colors group">
-            <span className="w-8 h-8 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center text-gold group-hover:bg-gold/20 transition-colors">
-              <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.27 2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 5.55 5.55l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-              </svg>
-            </span>
-            <span><strong className="text-hi font-medium">(604) 997-7234</strong></span>
-          </a>
+          <div className="flex flex-col items-start gap-4 mt-8 sm:flex-row sm:items-center sm:gap-7">
+            <a href="tel:6049977234" className="inline-flex items-center gap-2.5 text-[16px] text-mid hover:text-hi transition-colors group">
+              <span className="w-8 h-8 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center text-gold group-hover:bg-gold/20 transition-colors">
+                <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.57 3.27 2 2 0 0 1 3.55 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 5.55 5.55l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </span>
+              <span><strong className="text-hi font-medium">(604) 997-7234</strong></span>
+            </a>
+
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"
+              aria-label={`Connect on Instagram, ${INSTAGRAM_HANDLE}`}
+              className="inline-flex items-center gap-2.5 text-[16px] text-mid hover:text-hi transition-colors group">
+              <span className="w-8 h-8 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center text-gold group-hover:bg-gold/20 transition-colors">
+                <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <rect x="2" y="2" width="20" height="20" rx="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+              </span>
+              <span><strong className="text-hi font-medium">Connect on Instagram</strong></span>
+            </a>
+          </div>
         </div>
       </div>
 
