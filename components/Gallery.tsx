@@ -205,7 +205,7 @@ export default function Gallery() {
   };
 
   return (
-    <section id='gallery' className='py-[108px] bg-bk'>
+    <section id='gallery' className='py-[108px] bg-bk-2'>
       <div className='container'>
         <div className='flex justify-between items-end mb-12 flex-wrap gap-6'>
           <div>

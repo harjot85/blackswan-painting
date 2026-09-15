@@ -1,8 +1,12 @@
 'use client';
 
+import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
-const NAV_LINKS = ['services', 'about', 'gallery', 'testimonials', 'contact'] as const;
+import { REVIEW_PAGE_PATH } from '@/lib/business';
+
+const NAV_LINKS = ['services', 'gallery', 'testimonials', 'contact', 'about'] as const;
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,22 +30,32 @@ export default function Navbar() {
         <div className="flex items-center justify-between gap-6">
 
           {/* Logo */}
-          <a href="#home" className="flex flex-col leading-none ">
-            <span className="font-display text-[21px] font-black tracking-[1.5px] text-white">
-              BLACK <span className="text-gold italic">SWAN</span>
-            </span>
-            <span className="text-[8.5px] font-medium tracking-[5px] text-lo uppercase mt-[3px]">
-              Painting &amp; Renovations
+          <a href="#home" className="flex items-center gap-[11px]">
+            <Image
+              src="/gallery/logo-mark.png"
+              alt=""
+              width={240}
+              height={170}
+              priority
+              className={`w-auto select-none transition-all duration-[400ms] ${scrolled ? 'h-[40px]' : 'h-[48px]'}`}
+            />
+            <span className="flex flex-col leading-none">
+              <span className="font-display text-[25px] font-black tracking-[1.5px] text-white">
+                BLACK <span className="text-gold italic">SWAN</span>
+              </span>
+              <span className="text-[10px] font-medium tracking-[4.6px] text-lo uppercase mt-[4px]">
+                Painting &amp; Renovations
+              </span>
             </span>
           </a>
 
           {/* Desktop links */}
-          <ul className="hidden md:flex items-center gap-[30px]">
+          <ul className="hidden lg:flex items-center gap-[26px] xl:gap-[32px]">
             {NAV_LINKS.map(id => (
               <li key={id}>
                 <a
                   href={`#${id}`}
-                  className="text-[13px] font-medium text-mid tracking-[0.3px] transition-colors duration-[250ms] hover:text-white"
+                  className="text-[16px] font-medium text-mid tracking-[0.3px] transition-colors duration-[250ms] hover:text-white"
                 >
                   {id.charAt(0).toUpperCase() + id.slice(1)}
                 </a>
@@ -49,14 +63,14 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <a href="#contact" className="btn btn-primary hidden md:inline-flex !py-[10px] !px-5 !text-[13px]">
+          <a href="#contact" className="btn btn-primary hidden lg:inline-flex !py-[11px] !px-[22px] !text-[15px]">
             Get a Free Quote
           </a>
 
           {/* Hamburger */}
           <button
             onClick={() => setMenuOpen(o => !o)}
-            className="md:hidden flex flex-col gap-[5px] bg-transparent border-0 p-1"
+            className="lg:hidden flex flex-col gap-[5px] bg-transparent border-0 p-1"
             aria-label="Toggle menu"
           >
             <span className="block w-[22px] h-[2px] bg-white rounded-sm transition-all duration-300"
@@ -71,17 +85,27 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       {menuOpen && (
-        <div className="flex flex-col bg-bk-2 border-t border-white/5 md:hidden">
+        <div className="flex flex-col bg-bk-2 border-t border-white/5 lg:hidden">
           {NAV_LINKS.map(id => (
             <a
               key={id}
               href={`#${id}`}
               onClick={closeMenu}
-              className="px-7 py-4 text-[14px] font-medium text-mid border-b border-white/[0.04]"
+              className="px-7 py-4 text-[16px] font-medium text-mid border-b border-white/[0.04]"
             >
               {id.charAt(0).toUpperCase() + id.slice(1)}
             </a>
           ))}
+          <Link
+            href={REVIEW_PAGE_PATH}
+            onClick={closeMenu}
+            className="flex items-center gap-2 px-7 py-4 text-[16px] font-semibold text-gold border-b border-white/[0.04]"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.5l2.9 5.88 6.49.95-4.7 4.58 1.11 6.46L12 17.33l-5.8 3.04 1.11-6.46-4.7-4.58 6.49-.95z"/>
+            </svg>
+            Share Your Experience
+          </Link>
         </div>
       )}
     </nav>

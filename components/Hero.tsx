@@ -1,6 +1,9 @@
 'use client';
 
+import Link from 'next/link';
+
 import { INSTAGRAM_URL, INSTAGRAM_HANDLE } from '@/lib/social';
+import { REVIEW_PAGE_PATH } from '@/lib/business';
 
 export default function Hero() {
   return (
@@ -95,6 +98,16 @@ export default function Hero() {
               </span>
               <span><strong className="text-hi font-medium">Connect on Instagram</strong></span>
             </a>
+
+            <Link href={REVIEW_PAGE_PATH}
+              className="inline-flex items-center gap-2.5 text-[16px] text-mid hover:text-hi transition-colors group">
+              <span className="w-8 h-8 rounded-full bg-gold/10 border border-gold/20 flex items-center justify-center text-gold group-hover:bg-gold/20 transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.5l2.9 5.88 6.49.95-4.7 4.58 1.11 6.46L12 17.33l-5.8 3.04 1.11-6.46-4.7-4.58 6.49-.95z"/>
+                </svg>
+              </span>
+              <span><strong className="text-hi font-medium">Share Your Experience</strong></span>
+            </Link>
           </div>
         </div>
       </div>

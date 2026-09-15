@@ -23,15 +23,20 @@ export default function About() {
   const rightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    // Both columns can enter the viewport in the same callback, so every
+    // entry has to be handled — destructuring only the first silently
+    // leaves the other column stuck at opacity 0.
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
     }, { threshold: 0.1 });
     [leftRef, rightRef].forEach(r => r.current && observer.observe(r.current));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="about" className="py-[108px] bg-bk-2">
+    <section id="about" className="py-[108px] bg-bk">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[52px] md:gap-[88px] items-center">
 

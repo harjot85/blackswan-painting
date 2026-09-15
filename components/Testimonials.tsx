@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 
+import LeaveReviewPanel from './review/LeaveReviewPanel';
+
 interface Testimonial {
   text: string;
   initials: string;
@@ -60,7 +62,7 @@ function TestiCard({ text, initials, name, location, delay }: Testimonial) {
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-[108px] bg-bk-2">
+    <section id="testimonials" className="py-[108px] bg-bk">
       <div className="container">
         <div className="mb-14">
           <div className="section-eyebrow">Client Reviews</div>
@@ -70,6 +72,8 @@ export default function Testimonials() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[22px]">
           {TESTIMONIALS.map((t, i) => <TestiCard key={i} {...t} />)}
         </div>
+
+        <LeaveReviewPanel />
       </div>
     </section>
   );

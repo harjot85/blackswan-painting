@@ -1,6 +1,9 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
+
+import { REVIEW_PAGE_PATH } from '@/lib/business';
 
 interface InfoItem {
   label: string;
@@ -71,7 +74,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-[108px] bg-bk relative overflow-hidden">
+    <section id="contact" className="py-[108px] bg-bk-2 relative overflow-hidden">
       {/* Top accent line */}
       <div className="absolute top-0 left-[10%] right-[10%] h-px"
         style={{ background: 'linear-gradient(90deg, transparent, rgba(242,193,46,0.4), transparent)' }} />
@@ -97,6 +100,21 @@ export default function Contact() {
                 </div>
               ))}
             </div>
+
+            {/* Past clients */}
+            <Link
+              href={REVIEW_PAGE_PATH}
+              className="group mt-[34px] inline-flex items-center gap-3 rounded-lg border border-gold/20 bg-gold/[0.06] px-[18px] py-3 transition-all duration-300 hover:border-gold/45 hover:bg-gold/[0.1]"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" className="shrink-0 text-gold">
+                <path d="M12 2.5l2.9 5.88 6.49.95-4.7 4.58 1.11 6.46L12 17.33l-5.8 3.04 1.11-6.46-4.7-4.58 6.49-.95z"/>
+              </svg>
+              <span className="text-[13.5px] text-mid">
+                Already worked with us?{' '}
+                <strong className="font-semibold text-hi">We&rsquo;d love to hear from you</strong>
+              </span>
+              <span className="text-gold transition-transform duration-300 group-hover:translate-x-[3px]">&rarr;</span>
+            </Link>
           </div>
 
           {/* Form */}

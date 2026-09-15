@@ -1,14 +1,28 @@
+import Link from 'next/link';
+
 import { INSTAGRAM_URL } from '@/lib/social';
+import { GOOGLE_MAPS_URL, REVIEW_PAGE_PATH } from '@/lib/business';
 
 const SERVICES_LINKS = [
   'Interior Painting', 'Exterior Painting', 'Cabinet Refinishing',
   'Deck & Fence Staining', 'Drywall Repair', 'Home Renovations',
 ];
 
-const COMPANY_LINKS: [string, string][] = [
-  ['About Us', '#about'], ['Gallery', '#gallery'], ['Reviews', '#testimonials'],
-  ['Contact', '#contact'], ['Free Quote', '#contact'],
+const COMPANY_LINKS: CompanyLink[] = [
+  { label: 'About Us',       href: '#about' },
+  { label: 'Gallery',        href: '#gallery' },
+  { label: 'Reviews',        href: '#testimonials' },
+  { label: 'Share Your Experience', href: REVIEW_PAGE_PATH, route: true },
+  { label: 'Contact',        href: '#contact' },
+  { label: 'Free Quote',     href: '#contact' },
 ];
+
+interface CompanyLink {
+  label: string;
+  href: string;
+  /** Real route rather than an on-page anchor. */
+  route?: boolean;
+}
 
 interface SocialLink {
   label: string;
@@ -20,7 +34,7 @@ interface SocialLink {
 const SOCIAL_LINKS: SocialLink[] = [
   { label: 'Facebook',  path: 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z', href: '#' },
   { label: 'Instagram', path: null, href: INSTAGRAM_URL, external: true },
-  { label: 'Location',  path: 'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z', href: '#' },
+  { label: 'Location',  path: 'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z', href: GOOGLE_MAPS_URL, external: true },
 ];
 
 export default function Footer() {
@@ -75,8 +89,14 @@ export default function Footer() {
           <div>
             <div className="text-[11.5px] font-semibold tracking-[2.5px] uppercase text-white mb-[22px]">Company</div>
             <ul className="flex flex-col gap-3">
-              {COMPANY_LINKS.map(([label, href]) => (
-                <li key={label}><a href={href} className="text-[13.5px] text-mid hover:text-hi transition-colors duration-200">{label}</a></li>
+              {COMPANY_LINKS.map(({ label, href, route }) => (
+                <li key={label}>
+                  {route ? (
+                    <Link href={href} className="text-[13.5px] text-mid hover:text-hi transition-colors duration-200">{label}</Link>
+                  ) : (
+                    <a href={href} className="text-[13.5px] text-mid hover:text-hi transition-colors duration-200">{label}</a>
+                  )}
+                </li>
               ))}
             </ul>
           </div>
