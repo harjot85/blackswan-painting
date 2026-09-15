@@ -27,7 +27,7 @@ export default function Navbar() {
         : 'py-[22px] bg-transparent border-transparent'
     }`}>
       <div className="container">
-        <div className="flex items-center justify-between gap-6">
+        <div className="flex items-center justify-between gap-3 sm:gap-6">
 
           {/* Logo */}
           <a href="#home" className="flex items-center gap-[11px]">
@@ -37,13 +37,13 @@ export default function Navbar() {
               width={240}
               height={170}
               priority
-              className={`w-auto select-none transition-all duration-[400ms] ${scrolled ? 'h-[40px]' : 'h-[48px]'}`}
+              className={`w-auto select-none transition-all duration-[400ms] ${scrolled ? 'h-[34px] sm:h-[40px]' : 'h-[40px] sm:h-[48px]'}`}
             />
             <span className="flex flex-col leading-none">
-              <span className="font-display text-[25px] font-black tracking-[1.5px] text-white">
+              <span className="font-display text-[21px] sm:text-[25px] font-black tracking-[1.5px] text-white whitespace-nowrap">
                 BLACK <span className="text-gold italic">SWAN</span>
               </span>
-              <span className="text-[10px] font-medium tracking-[4.6px] text-lo uppercase mt-[4px]">
+              <span className="hidden min-[360px]:block text-[8.5px] tracking-[3.2px] sm:text-[10px] sm:tracking-[4.6px] font-medium text-lo uppercase mt-[4px] whitespace-nowrap">
                 Painting &amp; Renovations
               </span>
             </span>
@@ -63,9 +63,13 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <a href="#contact" className="btn btn-primary hidden lg:inline-flex !py-[11px] !px-[22px] !text-[15px]">
-            Get a Free Quote
-          </a>
+          {/* Wrapper carries the breakpoint: `.btn` sets display in unlayered
+              CSS, which outranks Tailwind's layered `hidden` utility. */}
+          <div className="hidden lg:block">
+            <a href="#contact" className="btn btn-primary !py-[11px] !px-[22px] !text-[15px]">
+              Get a Free Quote
+            </a>
+          </div>
 
           {/* Hamburger */}
           <button
@@ -106,6 +110,13 @@ export default function Navbar() {
             </svg>
             Share Your Experience
           </Link>
+          <a
+            href="#contact"
+            onClick={closeMenu}
+            className="btn btn-primary m-5 justify-center !py-[13px] !text-[15px]"
+          >
+            Get a Free Quote
+          </a>
         </div>
       )}
     </nav>

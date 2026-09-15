@@ -7,7 +7,7 @@ import { REVIEW_PAGE_PATH } from '@/lib/business';
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-bk">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-bk pb-[120px] md:pb-0">
 
       {/* Radial glow */}
       <div className="absolute inset-0 pointer-events-none" style={{
@@ -34,7 +34,7 @@ export default function Hero() {
       }}>BS</div>
 
       <div className="container">
-        <div className="relative z-[2] max-w-[760px] pt-20">
+        <div className="relative z-[2] max-w-[760px] pt-28 md:pt-20">
 
           {/* Pill badge */}
           <div className="inline-flex items-center gap-2 pl-[6px] pr-[14px] py-[5px] bg-gold/10 border border-gold/20 rounded-full text-[11.5px] font-semibold tracking-[1.5px] uppercase text-gold mb-[30px]">
